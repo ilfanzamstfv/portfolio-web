@@ -1,6 +1,7 @@
 import { Reveal, Tilt } from "@/components/motion";
 import { SectionHeading } from "@/components/section-heading";
 import { site } from "@/content/site";
+import Image from 'next/image'
 
 export function About() {
   const { about } = site;
@@ -18,7 +19,12 @@ export function About() {
               aria-label="Photo placeholder"
               className="grid aspect-square place-items-center bg-photo font-mono text-xs text-ink-soft"
             >
-              [your photo]
+              <Image
+                    src="https://drive.google.com/file/d/1dKXuZYZAaDQ3NASO946w1mlEYQ0X50h6/view?usp=sharing"
+                    alt="Profile"
+                    width={376}
+                    height={376}
+                  />
             </div>
             <figcaption className="pt-5 text-center font-mono text-xs">
               {site.name}, {site.city}
