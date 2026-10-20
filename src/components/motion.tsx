@@ -1,10 +1,22 @@
 "use client";
 
 import { MotionConfig, motion, useReducedMotion } from "motion/react";
-import type { ReactNode } from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
+
+const LoadContext = createContext<{
+  loaded: boolean;
+  setLoaded: (v: boolean) => void;
+}>({ loaded: true, setLoaded: () => {} });
+
+export const useLoad = () => useContext(LoadContext);
 
 export function MotionProvider({ children }: { children: ReactNode }) {
-  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <LoadContext value={{ loaded, setLoaded }}>
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
+    </LoadContext>
+  );
 }
 
 // Fade-up once as the block enters the viewport (design.md §7).
@@ -51,9 +63,17 @@ export function Tilt({
   );
 }
 
-// Yellow marker sweep, once on load. Reduced motion skips the sweep.
-export function Highlight({ children }: { children: ReactNode }) {
+// Yellow marker sweep. Waits for the loading screen unless `immediate`; reduced motion skips the sweep.
+export function Highlight({
+  children,
+  immediate,
+}: {
+  children: ReactNode;
+  immediate?: boolean;
+}) {
   const reduce = useReducedMotion();
+  const { loaded } = useLoad();
+  const full = reduce || immediate || loaded;
   return (
     <motion.mark
       className="bg-no-repeat px-1 text-inherit [box-decoration-break:clone]"
@@ -62,8 +82,8 @@ export function Highlight({ children }: { children: ReactNode }) {
           "linear-gradient(var(--color-yellow), var(--color-yellow))",
       }}
       initial={reduce ? false : { backgroundSize: "0% 100%" }}
-      animate={{ backgroundSize: "100% 100%" }}
-      transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+      animate={{ backgroundSize: full ? "100% 100%" : "0% 100%" }}
+      transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
     >
       {children}
     </motion.mark>

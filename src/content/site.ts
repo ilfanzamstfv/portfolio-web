@@ -13,7 +13,7 @@ export const site = {
     github: "https://github.com/ilfanzamstfv",
     linkedin: "https://www.linkedin.com/in/ilfanza",
     email: "ilfanzamustafavi@gmail.com",
-    cv: "https://drive.google.com/file/d/16w9aeO-lN8ge6leO8YUdr7KBe0EwWrcW/view?usp=sharing"
+    cv: "https://drive.google.com/file/d/16w9aeO-lN8ge6leO8YUdr7KBe0EwWrcW/view?usp=sharing",
   },
   nav: [
     { label: "about", href: "#about" },
@@ -38,6 +38,7 @@ export const site = {
     stickers: { top: "clean code", bottom: "pixel-perfect" },
   },
   about: {
+    photo: "/profile.jpg",
     title: "I care about the details users never notice.",
     paragraphs: [
       "I'm a frontend developer with 2 years of experience building web apps with React and TypeScript. I like the space between design and engineering: making layouts feel right, interactions feel quick and pages usable for everyone.",
@@ -74,8 +75,7 @@ export const site = {
         items: ["Git", "Claude", "Playwright", "Codex", "Notion"],
       },
     ],
-    learning:
-      "Currently learning: Express JS, Golang, and Flask.",
+    learning: "Currently learning: Express JS, Golang, and Flask.",
   },
   projects: {
     title: "Selected work.",
@@ -121,31 +121,33 @@ export const site = {
         period: "2026 — Present",
         title: "Frontend Developer Contract · Asa Kreasi Interasia",
         points: [
-          "Contributed to the development of an Enterprise Resource Planning (ERP) website, serving as a UI/UX Designer, Front-End Developer and Back-End Developer."
+          "Contributed to the development of an Enterprise Resource Planning (ERP) website, serving as a UI/UX Designer, Front-End Developer and Back-End Developer.",
         ],
       },
       {
         period: "2025 — 2026",
         title: "Frontend Developer Internship · Asa Kreasi Interasia",
         points: [
-          "Contributed to the development of an Enterprise Resource Planning (ERP) website, serving as a UI/UX Designer and Front-End Developer."
+          "Contributed to the development of an Enterprise Resource Planning (ERP) website, serving as a UI/UX Designer and Front-End Developer.",
         ],
       },
       {
         period: "2024",
-        title: "Full Stack Developer Internship · PT.Brainlens Rekayasa Konsultan",
+        title:
+          "Full Stack Developer Internship · PT.Brainlens Rekayasa Konsultan",
         points: [
           "Working as a full stack website application developer, created a logistics data management website application using Next.JS and Supabase.",
         ],
       },
       {
         period: "2023",
-        title: "Information Technology System Support Internship · Global Jaya School",
+        title:
+          "Information Technology System Support Internship · Global Jaya School",
         points: [
           "Re-installation of Windows and macOS operating systems",
           "installation of CCTV systems integrated with software",
           "building a private server using IBM systems.",
-          ],
+        ],
       },
     ],
   },
@@ -156,7 +158,7 @@ export const site = {
     emailLabel: "ilfanzamustafavi@gmail.com",
   },
   footer: {
-    left: "© [Year] Ilfanza",
+    left: `© ${new Date().getFullYear()} Ilfanza`,
     right: "Built with React, Next JS, Tailwind & a lot of coffee",
   },
 };

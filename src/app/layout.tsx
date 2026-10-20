@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 
+import { Loader } from "@/components/loader";
 import { MotionProvider } from "@/components/motion";
 import { site } from "@/content/site";
 import "./globals.css";
@@ -32,7 +33,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body id="top" className="flex min-h-full flex-col font-sans">
-        <MotionProvider>{children}</MotionProvider>
+        {/* Without JS the loader would never leave. */}
+        <noscript>
+          <style>{"#loader{display:none}"}</style>
+        </noscript>
+        <MotionProvider>
+          <Loader />
+          {children}
+        </MotionProvider>
       </body>
     </html>
   );

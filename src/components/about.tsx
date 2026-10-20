@@ -1,7 +1,7 @@
 import { Reveal, Tilt } from "@/components/motion";
 import { SectionHeading } from "@/components/section-heading";
 import { site } from "@/content/site";
-import Image from 'next/image'
+import Image from "next/image";
 
 export function About() {
   const { about } = site;
@@ -14,17 +14,15 @@ export function About() {
       <div className="wrap grid items-center gap-14 lg:grid-cols-[5fr_7fr]">
         <Tilt rotate={-3} className="relative mx-auto w-full max-w-sm">
           <figure className="border border-ink bg-white p-3 pb-4 shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
-            <div
-              role="img"
-              aria-label="Photo placeholder"
-              className="grid aspect-square place-items-center bg-photo font-mono text-xs text-ink-soft"
-            >
+            <div className="relative aspect-square overflow-hidden bg-photo">
               <Image
-                    src="https://drive.google.com/file/d/1dKXuZYZAaDQ3NASO946w1mlEYQ0X50h6/view?usp=sharing"
-                    alt="Profile"
-                    width={376}
-                    height={376}
-                  />
+                src={about.photo}
+                alt={`Portrait of ${site.name}`}
+                fill
+                sizes="(min-width: 1024px) 384px, 90vw"
+                className="object-cover object-bottom"
+                priority
+              />
             </div>
             <figcaption className="pt-5 text-center font-mono text-xs">
               {site.name}, {site.city}
