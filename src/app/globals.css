@@ -1,26 +1,108 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Palette from agents/design.md §4.1. Light only: the cream/paper look is the identity, and the one dark block is Contact. */
+@theme {
+  --color-ink: #17171f;
+  --color-ink-soft: #4a4a55;
+  --color-ink-mute: #6b6b75;
+  --color-paper: #f8f6ef;
+  --color-dark: #1a1a22;
+  --color-blue: #2347e0;
+  --color-yellow: #ffd94a;
+  --color-green: #2fb36b;
+  --color-line: #e4e1d6;
+  --color-photo: #ddd8c8;
+  --color-dim: #8a8a94;
+  --color-on-dark: #c9c9d1;
+  --color-tint-blue: #e8ecfb;
+  --color-tint-yellow: #fdf3c4;
+  --color-tint-green: #ddf1e3;
+  --color-tint-pink: #fbdde6;
+  --color-sticker-mint: #bdebd0;
+  --color-sticker-pink: #f8c9d8;
+  --color-code-str: #7ee0a3;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --shadow-yellow: 6px 6px 0 var(--color-yellow);
+  --shadow-offset: 3px 3px 0 var(--color-ink);
 }
 
+/* Token names the shadcn/Neobrutalism components expect. */
 @theme inline {
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-main: var(--main);
+  --color-main-foreground: var(--main-foreground);
+  --color-secondary-background: var(--secondary-background);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --spacing-boxShadowX: 3px;
+  --spacing-boxShadowY: 3px;
+  --radius-base: 4px;
+  --font-weight-base: 400;
+  --font-weight-heading: 700;
+  --shadow-shadow: var(--shadow);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: var(--color-paper);
+  --secondary-background: #fff;
+  --main: var(--color-blue);
+  --main-foreground: #fff;
+  --foreground: var(--color-ink);
+  --border: var(--color-ink);
+  --ring: var(--color-blue);
+  --shadow: var(--shadow-offset);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-weight: var(--font-weight-base);
+  }
+  h1,
+  h2,
+  h3 {
+    font-weight: var(--font-weight-heading);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+  }
+  /* Blue fails 3:1 on the dark Contact block. */
+  .on-dark :focus-visible {
+    outline-color: var(--color-yellow);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility wrap {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 70rem;
+  padding-inline: 1rem;
+  @media (min-width: 40rem) {
+    padding-inline: 1.5rem;
+  }
+}
+
+/* Ruled-paper texture, hero only (design.md §2). */
+@utility bg-ruled {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 27px,
+    var(--color-line) 27px 28px
+  );
 }
