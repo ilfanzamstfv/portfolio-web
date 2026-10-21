@@ -35,7 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body id="top" className="flex min-h-full flex-col font-sans">
         {/* Without JS the loader would never leave. */}
         <noscript>
-          <style>{"#loader{display:none}"}</style>
+          <style>{"#loader{display:none}html{overflow:auto!important}"}</style>
         </noscript>
         <MotionProvider>
           <Loader />

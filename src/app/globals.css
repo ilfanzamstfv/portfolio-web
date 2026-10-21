@@ -82,6 +82,10 @@
     outline: 2px solid var(--color-blue);
     outline-offset: 2px;
   }
+  /* Scroll lock while the loader is mounted; CSS so it holds from first paint (no scrollbar shift). */
+  html:has(#loader) {
+    overflow: hidden;
+  }
   /* Blue fails 3:1 on the dark Contact block. */
   .on-dark :focus-visible {
     outline-color: var(--color-yellow);

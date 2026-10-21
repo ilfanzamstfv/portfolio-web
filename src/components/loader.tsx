@@ -1,9 +1,10 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import Image from "next/image";
 import { useEffect } from "react";
 
-import { Highlight, useLoad } from "@/components/motion";
+import { useLoad } from "@/components/motion";
 import { site } from "@/content/site";
 
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -14,19 +15,11 @@ export function Loader() {
   const reduce = useReducedMotion();
 
   useEffect(() => {
-    const html = document.documentElement;
-    html.style.overflow = "hidden";
     const images = [...document.images].map((i) => i.decode().catch(() => {}));
     Promise.race([
       Promise.all([document.fonts.ready, ...images, wait(700)]),
       wait(2500),
-    ]).then(() => {
-      html.style.overflow = "";
-      setLoaded(true);
-    });
-    return () => {
-      html.style.overflow = "";
-    };
+    ]).then(() => setLoaded(true));
   }, [setLoaded]);
 
   return (
@@ -47,10 +40,23 @@ export function Loader() {
           }
         >
           <div className="text-center">
-            <p className="text-[clamp(2.25rem,6vw,4rem)] leading-none font-bold tracking-tight">
-              <Highlight immediate>{site.name}</Highlight>
+            <motion.div
+              initial={reduce ? false : { clipPath: "inset(0 100% 0 0)" }}
+              animate={{ clipPath: "inset(0 0% 0 0)" }}
+              transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+            >
+              <Image
+                src={site.loading.logo}
+                alt=""
+                width={512}
+                height={512}
+                priority
+                className="mx-auto size-32 sm:size-40"
+              />
+            </motion.div>
+            <p className="mt-6 font-mono text-xl text-ink-mute">
+              {site.loading.subtitle}
             </p>
-            <p className="mt-6 font-mono text-xl text-ink-mute">Cooking…</p>
           </div>
         </motion.div>
       )}

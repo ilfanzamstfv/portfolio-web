@@ -63,17 +63,11 @@ export function Tilt({
   );
 }
 
-// Yellow marker sweep. Waits for the loading screen unless `immediate`; reduced motion skips the sweep.
-export function Highlight({
-  children,
-  immediate,
-}: {
-  children: ReactNode;
-  immediate?: boolean;
-}) {
+// Yellow marker sweep. Waits for the loading screen; reduced motion skips the sweep.
+export function Highlight({ children }: { children: ReactNode }) {
   const reduce = useReducedMotion();
   const { loaded } = useLoad();
-  const full = reduce || immediate || loaded;
+  const full = reduce || loaded;
   return (
     <motion.mark
       className="bg-no-repeat px-1 text-inherit [box-decoration-break:clone]"

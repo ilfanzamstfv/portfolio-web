@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { buttonVariants } from "@/components/ui/button";
 import { site } from "@/content/site";
 
@@ -6,9 +8,12 @@ export function Navbar() {
     <header className="sticky top-0 z-40 border-b border-ink/15 bg-background">
       <div className="wrap flex h-14 items-center justify-between">
         <a href="#top" className="flex items-center gap-2 font-bold">
-          <span
-            aria-hidden
-            className="size-3 rounded-full border border-ink bg-yellow"
+          <Image
+            src="/logo-symbol-small.svg"
+            alt=""
+            width={28}
+            height={28}
+            className="size-7"
           />
           {site.name}
         </a>

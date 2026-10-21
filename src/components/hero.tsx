@@ -21,7 +21,7 @@ const List = ({ items }: { items: string[] }) => (
 function CodeWindow() {
   const { stack, cares } = site.hero.code;
   return (
-    <div className="relative">
+    <div className="relative min-w-0">
       <div className="overflow-hidden rounded-lg bg-ink shadow-yellow">
         <div
           className="flex items-center gap-1.5 border-b border-white/10 px-4 py-2.5"
@@ -70,10 +70,16 @@ export function Hero() {
   return (
     <section className="bg-ruled border-b border-ink/15">
       <div className="wrap grid items-center gap-14 py-12 lg:grid-cols-2 lg:py-20">
-        <div>
+        <div className="min-w-0">
           {site.availability.open && (
-            <Badge variant="status" className="gap-2 rounded-full px-3 py-1">
-              <span aria-hidden className="size-1.5 rounded-full bg-green" />
+            <Badge
+              variant="status"
+              className="gap-2 rounded-md border-2 bg-white px-3 py-1.5 font-bold shadow-offset"
+            >
+              <span
+                aria-hidden
+                className="size-2.5 rounded-full border border-ink bg-green"
+              />
               {site.availability.text}
             </Badge>
           )}

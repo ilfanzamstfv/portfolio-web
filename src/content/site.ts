@@ -2,9 +2,9 @@ import type { Tint } from "@/lib/tint";
 
 // Placeholder copy from the design reference. Empty URLs render as plain, non-clickable text.
 export const site = {
-  name: "[ILFANZA]",
+  name: "Ilfanza",
   city: "[South Tangerang]",
-  role: "Frontend Developer, UI/UX Designer",
+  role: "[Frontend Developer, UI/UX Designer]",
   availability: {
     open: true,
     text: "Open to Work · Onsite · Remote OK",
@@ -72,7 +72,7 @@ export const site = {
       {
         name: "Quality & Tools",
         tint: "pink" as Tint,
-        items: ["Git", "Claude", "Playwright", "Codex", "Notion"],
+        items: ["Git", "Claude", "Codex", "Notion"],
       },
     ],
     learning: "Currently learning: Express JS, Golang, and Flask.",
@@ -160,5 +160,9 @@ export const site = {
   footer: {
     left: `© ${new Date().getFullYear()} Ilfanza`,
     right: "Built with React, Next JS, Tailwind & a lot of coffee",
+  },
+  loading: {
+    logo: "/logo-symbol.svg",
+    subtitle: "Cooking...",
   },
 };
