@@ -80,37 +80,36 @@ export const site = {
   projects: {
     title: "Selected work.",
     featured: {
-      label: "Featured · [Year]",
-      title: "[Project one]",
+      label: "Featured · 2026",
+      title: "Authora Assets Management",
       description:
-        "[One sentence on the problem and what you built.] Built with a focus on performance and accessibility.",
-      points: [
-        "My role: [e.g. sole frontend developer]",
-        "Result: [e.g. LCP from 4.2s to 1.8s]",
-      ],
-      tags: ["React", "TypeScript", "Tailwind"],
-      shot: "[project 01 screenshot]",
+        "Authora is a React-based asset management dashboard for handling authentication, inventory data, stock monitoring, purchase records, master data, users, roles, and permission-based access.",
+      points: ["My role: Fullstack developer", "Status : Under Development"],
+      tags: ["React", "TypeScript", "Tailwind", "Express", "Node"],
+      shot: "/authora.png",
       demo: "",
-      source: "",
+      source: "https://github.com/ilfanzamstfv/assets-management-project",
     },
     others: [
       {
-        title: "[Project two]",
-        description: "[One-line description and your outcome.]",
-        tags: ["Next.js", "REST API"],
-        shot: "[project 02 screenshot]",
+        title: "DinePos",
+        description:
+          "DinePos is a Point of Sale (POS) app for the food and beverage industry built with Next.js. The app features a menu catalog, category selection, an order cart, checkout via Midtrans Snap, as well as a login page and dashboard for administrative purposes.",
+        tags: ["Next.js", "Midtrans"],
+        shot: "/dinepos.png",
         tint: "yellow" as Tint,
         demo: "",
-        source: "",
+        source: "https://github.com/ilfanzamstfv/DinePos-web",
       },
       {
-        title: "[Project three]",
-        description: "[One-line description and your outcome.]",
-        tags: ["Vue", "Design system"],
-        shot: "[project 03 screenshot]",
+        title: "Cafinity",
+        description:
+          "Cafinity is a website to help coffee lovers find cafes near you, based on your preferences and recommendations.",
+        tags: ["Next.js", "Supabase"],
+        shot: "/cafinity.png",
         tint: "green" as Tint,
         demo: "",
-        source: "",
+        source: "https://github.com/ilfanzamstfv/cafe-recommendation",
       },
     ],
   },
@@ -156,6 +155,7 @@ export const site = {
     intro:
       "I'm looking for a Frontend Developer role or anything. Email me or send a note and I'll reply immediately.",
     emailLabel: "ilfanzamustafavi@gmail.com",
+    timezone: "WIB (UTC+7)",
   },
   footer: {
     left: `© ${new Date().getFullYear()} Ilfanza`,

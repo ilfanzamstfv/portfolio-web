@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { Reveal } from "@/components/motion";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteLink } from "@/components/site-link";
@@ -6,15 +8,31 @@ import { site } from "@/content/site";
 import { tint, type Tint } from "@/lib/tint";
 import { cn } from "@/lib/utils";
 
+// A path ("/x.png") renders the screenshot; any other text is a placeholder label.
 function Shot({
   label,
+  alt,
   color,
   className,
 }: {
   label: string;
+  alt: string;
   color: Tint;
   className?: string;
 }) {
+  if (label.startsWith("/")) {
+    return (
+      <div className={cn("relative overflow-hidden", tint[color], className)}>
+        <Image
+          src={label}
+          alt={alt}
+          fill
+          sizes="(min-width: 1024px) 560px, 90vw"
+          className="object-cover object-top"
+        />
+      </div>
+    );
+  }
   return (
     <div
       role="img"
@@ -55,7 +73,12 @@ function Featured() {
             <span key={i} className="size-2 rounded-full bg-ink" />
           ))}
         </div>
-        <Shot label={p.shot} color="blue" className="aspect-[16/10]" />
+        <Shot
+          label={p.shot}
+          alt={`${p.title} screenshot`}
+          color="blue"
+          className="aspect-[16/10]"
+        />
       </div>
       <div className="flex flex-col">
         <p className="font-mono text-xs uppercase tracking-wider text-main">
@@ -72,9 +95,9 @@ function Featured() {
           <Tags tags={p.tags} />
         </div>
         <div className="mt-6 flex flex-wrap gap-3">
-          <SiteLink variant="default" href={p.demo}>
+          {/*<SiteLink variant="default" href={p.demo}>
             Live demo ↗
-          </SiteLink>
+          </SiteLink>*/}
           <SiteLink variant="neutral" href={p.source}>
             Source code
           </SiteLink>
@@ -89,6 +112,7 @@ function Card({ p }: { p: (typeof site.projects.others)[number] }) {
     <article className="flex h-full flex-col rounded-lg border border-ink bg-white p-4 shadow-offset transition-transform hover:-translate-y-0.5">
       <Shot
         label={p.shot}
+        alt={`${p.title} screenshot`}
         color={p.tint}
         className="aspect-[16/9] rounded-md border border-ink"
       />
@@ -98,7 +122,7 @@ function Card({ p }: { p: (typeof site.projects.others)[number] }) {
         <Tags tags={p.tags} />
       </div>
       <p className="mt-auto flex gap-4 pt-5 font-mono text-xs">
-        <SiteLink href={p.demo}>Live demo ↗</SiteLink>
+        {/*<SiteLink href={p.demo}>Live demo ↗</SiteLink>*/}
         <SiteLink href={p.source}>Source</SiteLink>
       </p>
     </article>
